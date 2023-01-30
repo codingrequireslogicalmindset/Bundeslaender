@@ -1,8 +1,13 @@
-async function showBundesländer() {
+async function init() {
+    let bundesland = await fetch('./bundesland.json');
+    currentBundesland = await bundesland.json();
+    showBundesländer()
+    showFirstLetter();
+}
+
+function showBundesländer() {
     document.getElementById('content').innerHTML = '';
     for (let i = 0; i < 16; i++) {
-        let bundesland = await fetch('./bundesland.json');
-        currentBundesland = await bundesland.json();
         document.getElementById('content').innerHTML += `
         <div id="box${i}" class="box">
             <a href="${currentBundesland[i]['url']}" target="_blank" class="link">
@@ -16,11 +21,9 @@ async function showBundesländer() {
 
 let letterBox = [];
 
-async function showFirstLetter() {
+function showFirstLetter() {
     for (let i = 0; i < 16; i++) {
-        let letter = await fetch('./bundesland.json');
-        currentLetter = await letter.json();
-        let firstLetter = currentLetter[i]['name'][0]
+        let firstLetter = currentBundesland[i]['name'][0]
         if (!letterBox.includes(firstLetter)) {
             letterBox.push(firstLetter);
         }
@@ -34,11 +37,9 @@ async function showFirstLetter() {
     <div onclick="showBundesländer()" class="letter">TOTAL</div>`;
 }
 
-async function showLänder(j) {
+function showLänder(j) {
     document.getElementById('content').innerHTML = '';
     for (let i = 0; i < 16; i++) {
-        let bundesland = await fetch('./bundesland.json');
-        currentBundesland = await bundesland.json();
         if (currentBundesland[i]['name'].indexOf(letterBox[j]) == 0) {
             document.getElementById('content').innerHTML += `
             <div id="box${i}" class="box">
@@ -49,15 +50,5 @@ async function showLänder(j) {
             </div>
             `;
         }
-    }
-}
-
-async function url() {
-    let URL = await fetch('./bundesland.json');
-    let currentURL = await URL.json();
-    for (let i = 0; i < 16; i++) {
-        document.getElementById(`box${i}`).innerHTML += `
-        <a href="${currentURL[i]['url']}"></a>
-        `;
     }
 }
