@@ -1,4 +1,5 @@
 async function showBundesländer() {
+    document.getElementById('content').innerHTML = '';
     for (let i = 0; i < 16; i++) {
         let bundesland = await fetch('./bundesland.json');
         currentBundesland = await bundesland.json();
@@ -6,7 +7,7 @@ async function showBundesländer() {
         <div id="box${i}" class="box">
             <a href="${currentBundesland[i]['url']}" target="_blank" class="link">
                 <div>Bundesland: ${currentBundesland[i]['name']}</div>
-                <div>Einwohner: ${currentBundesland[i]['population'].toFixed(1).replace('.', ',')} Millionen</div>
+                <div class="pop"><span style="color: black;">Einwohner:</span> ${currentBundesland[i]['population'].toFixed(1).replace('.', ',')} Millionen</div>
             </a>
         </div>
         `;
@@ -29,6 +30,8 @@ async function showFirstLetter() {
         <div onclick="showLänder(${j})" class="letter">${letterBox[j]}</div>
         `;
     }
+    document.getElementById('letter').innerHTML += `
+    <div onclick="showBundesländer()" class="letter">TOTAL</div>`;
 }
 
 async function showLänder(j) {
@@ -41,7 +44,7 @@ async function showLänder(j) {
             <div id="box${i}" class="box">
                 <a href="${currentBundesland[i]['url']}" target="_blank" class="link">
                     <div>Bundesland: ${currentBundesland[i]['name']}</div>
-                    <div>Einwohner: ${currentBundesland[i]['population'].toFixed(1).replace('.', ',')} Millionen</div>
+                    <div class="pop"><span style="color: black;">Einwohner:</span> ${currentBundesland[i]['population'].toFixed(1).replace('.', ',')} Millionen</div>
                 </a>
             </div>
             `;
