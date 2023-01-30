@@ -6,8 +6,8 @@ async function showBundesländer() {
         document.getElementById('content').innerHTML += `
         <div id="box${i}" class="box">
             <a href="${currentBundesland[i]['url']}" target="_blank" class="link">
-                <div>Bundesland: ${currentBundesland[i]['name']}</div>
-                <div class="pop"><span style="color: black;">Einwohner:</span> ${currentBundesland[i]['population'].toFixed(1).replace('.', ',')} Millionen</div>
+                <div>${currentBundesland[i]['name']}</div>
+                <div class="pop">${currentBundesland[i]['population'].toFixed(1).replace('.', ',')} Millionen</div>
             </a>
         </div>
         `;
@@ -43,8 +43,8 @@ async function showLänder(j) {
             document.getElementById('content').innerHTML += `
             <div id="box${i}" class="box">
                 <a href="${currentBundesland[i]['url']}" target="_blank" class="link">
-                    <div>Bundesland: ${currentBundesland[i]['name']}</div>
-                    <div class="pop"><span style="color: black;">Einwohner:</span> ${currentBundesland[i]['population'].toFixed(1).replace('.', ',')} Millionen</div>
+                    <div>${currentBundesland[i]['name']}</div>
+                    <div class="pop">${currentBundesland[i]['population'].toFixed(1).replace('.', ',')} Millionen</div>
                 </a>
             </div>
             `;
